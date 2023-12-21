@@ -1,0 +1,25 @@
+def merge(a, b):
+    s = []
+    i1= 0
+    i2 = 0
+    while i1 < len(a) and i2 < len(b):
+        if a[i1] > b[i2]:
+            s.append(b[i2])
+            i2 += 1
+        else:
+            s.append(a[i1])
+            i1 += 1
+    s += a[i1:] + b[i2:]
+    for i in s:
+        print(i, end=" ")
+
+
+a = list(map(int, input().split()))
+b = list(map(int, input().split()))
+merge(a, b)
+|
+a = set(input().split())
+b = set(input().split())
+c = a & b
+res = sorted(c, key=int)
+print(*res)

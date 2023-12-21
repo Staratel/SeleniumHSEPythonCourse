@@ -1,0 +1,313 @@
+from sys import stdin
+from copy import deepcopy
+
+
+class Matrix(object):
+    def __init__(self, matrix):
+        self.matrix = deepcopy(matrix)
+
+    def __str__(self):
+        return '\n'.join('\t'.join(map(str, row)) for row in self.matrix)
+
+    def size(self):
+        return (len(self.matrix), len(self.matrix[0]))
+
+
+exec(stdin.read())
+|
+from sys import stdin
+from copy import deepcopy
+
+class MatrixError(BaseException):
+    def __init__(self, first, second):
+        self.matrix1 = first
+        self.matrix2 = second
+
+class Matrix(object):
+    def __init__(self, matrix):
+        self.matrix = deepcopy(matrix)
+
+    def __str__(self):
+        return '\n'.join('\t'.join(map(str, row)) for row in self.matrix)
+
+    def __add__(self, other):
+        bl = len(self.matrix) == len(other.matrix)
+        if bl and len(self.matrix[0]) == len(other.matrix[0]):
+            l = []
+            for i in range(len(self.matrix)):
+                t = []
+                if len(self.matrix[i]) != len(other.matrix[i]):
+                    raise MatrixError(self, other)
+                for j in range(len(self.matrix[0])):
+                    t.append(self.matrix[i][j] + other.matrix[i][j])
+                l.append(t)
+            return '\n'.join('\t'.join(map(str, row)) for row in l)
+        else:
+            raise MatrixError(self, other)
+
+    def __mul__(self, a):
+        if isinstance(a, int) or isinstance(a, float):
+            res = deepcopy(self)
+            for i in range(self.size()[0]):
+                for j in range(self.size()[1]):
+                    res.matrix[i][j] *= a
+        else:
+            if self.size()[1] == a.size()[0]:
+                res = []
+                for j in range(self.size()[0]):
+                    res.append([0 for i in range(a.size()[1])])
+                res = Matrix(res)
+                for i in range(len(self.matrix)):
+                    for j in range(len(a.matrix[0])):
+                        for k in range(len(a.matrix)):
+                            t = self.matrix[i][k] * a.matrix[k][j]
+                            res.matrix[i][j] += t
+            else:
+                raise MatrixError(self, a)
+        return res
+
+    def __rmul__(self, num):
+        return self.__mul__(num)
+
+    def size(self):
+        return (len(self.matrix), len(self.matrix[0]))
+
+    def transpose(self):
+        transMatrix = list(zip(*self.matrix))
+        self.matrix = transMatrix
+        return Matrix(transMatrix)
+
+    def transposed(self):
+        transMatrix = list(zip(*self.matrix))
+        return Matrix(transMatrix)
+
+
+exec(stdin.read())
+|
+from sys import stdin
+from copy import deepcopy
+class MatrixError(BaseException):
+    def __init__(self, first, second):
+        self.matrix1 = first
+        self.matrix2 = second
+
+class Matrix(object):
+    def __init__(self, matrix):
+        self.matrix = deepcopy(matrix)
+    def __str__(self):
+        return '\n'.join('\t'.join(map(str, row)) for row in self.matrix)
+
+    def __add__(self, other):
+        bl = len(self.matrix) == len(other.matrix)
+        if bl and len(self.matrix[0]) == len(other.matrix[0]):
+            l = []
+            for i in range(len(self.matrix)):
+                t = []
+                if len(self.matrix[i]) != len(other.matrix[i]):
+                    raise MatrixError(self, other)
+                for j in range(len(self.matrix[0])):
+                    t.append(self.matrix[i][j] + other.matrix[i][j])
+                l.append(t)
+            return '\n'.join('\t'.join(map(str, row)) for row in l)
+        else:
+            raise MatrixError(self, other)
+
+        def __mul__(self, num):
+            l = []
+            for i in range(len(self.matrix)):
+                t = []
+                for j in range(len(self.matrix[0])):
+                    t.append(self.matrix[i][j] * num)
+                l.append(t)
+            return '\n'.join('\t'.join(map(str, row)) for row in l)
+    def __rmul__(self, num):
+        l = []
+        for i in range(len(self.matrix)):
+            t = []
+            for j in range(len(self.matrix[0])):
+                t.append(self.matrix[i][j] * num)
+            l.append(t)
+        return '\n'.join('\t'.join(map(str, row)) for row in l)
+
+    def size(self):
+        return (len(self.matrix), len(self.matrix[0]))
+
+    def transpose(self):
+        transMatrix = list(zip(*self.matrix))
+        self.matrix = transMatrix
+        return Matrix(transMatrix)
+
+    def transposed(self):
+        transMatrix = list(zip(*self.matrix))
+        return Matrix(transMatrix)
+
+exec(stdin.read())
+|
+from sys import stdin
+from copy import deepcopy
+class MatrixError(BaseException):
+    def __init__(self, first, second):
+        self.matrix1 = first
+        self.matrix2 = second
+
+class Matrix(object):
+    def __init__(self, matrix):
+        self.matrix = deepcopy(matrix)
+    def __str__(self):
+        return '\n'.join('\t'.join(map(str, row)) for row in self.matrix)
+
+    def __add__(self, other):
+        bl = len(self.matrix) == len(other.matrix)
+        if bl and len(self.matrix[0]) == len(other.matrix[0]):
+            l = []
+            for i in range(len(self.matrix)):
+                t = []
+                if len(self.matrix[i]) != len(other.matrix[i]):
+                    raise MatrixError(self, other)
+                for j in range(len(self.matrix[0])):
+                    t.append(self.matrix[i][j] + other.matrix[i][j])
+                l.append(t)
+            return Matrix(l)
+        else:
+            raise MatrixError(self, other)
+
+    def __mul__(self, a):
+        if isinstance(a,int) or isinstance(a,float):
+            res = deepcopy(self)
+            for i in range(self.size()[0]):
+                for j in range(self.size()[1]):
+                    res.matrix[i][j] *= a
+        else:
+            if(self.size()[1] == a.size()[0]):
+                res = Matrix([[0 for i in range(a.size()[1])] for j in range(self.size()[0])])
+                for i in range(len(self.matrix)):
+                    for j in range(len(a.matrix[0])):
+                        for k in range(len(a.matrix)):
+                            res.matrix[i][j] += self.matrix[i][k] * a.matrix[k][j]
+            else:
+                raise MatrixError(self,a)
+        return res
+
+    def __rmul__(self, a):
+        return self.__mul__(a)
+
+    def size(self):
+        return (len(self.matrix), len(self.matrix[0]))
+
+    def transpose(self):
+        transMatrix = list(zip(*self.matrix))
+        self.matrix = transMatrix
+        return Matrix(transMatrix)
+
+    def transposed(self):
+        transMatrix = list(zip(*self.matrix))
+        return Matrix(transMatrix)
+
+exec(stdin.read())
+|
+from sys import stdin
+from copy import deepcopy
+class Matrix(object):
+    def __init__(self, matrix):
+        self.matrix = deepcopy(matrix)
+
+    def __str__(self):
+        return '\n'.join('\t'.join(map(str, row)) for row in self.matrix)
+
+    def solve(self, s):
+        l = [-1000000] * len(s)
+        while True and len(self.matrix) > 0:
+            b = 0
+            for i in range(len(self.matrix)):
+                k = 0
+                val = 0
+                idx = 0
+                sum = 0
+                for j in range(len(self.matrix[0])):
+                    if l[j] == -1000000 and self.matrix[i][j] != 0:
+                        k += 1
+                        idx = j
+                        val = self.matrix[i][j]
+                    elif l[j] != -1000000:
+                        sum += l[j] * self.matrix[i][j]
+                if k == 1:
+                    l[idx] = (-sum + s[idx]) / self.matrix[i][idx]
+                    b = 1
+                    del[self.matrix[i]]
+                    break
+            if b == 0:
+                raise Exception
+        return l
+
+
+exec(stdin.read())
+|
+from sys import stdin
+from copy import deepcopy
+class MatrixError(BaseException):
+    def __init__(self, first, second):
+        self.matrix1 = first
+        self.matrix2 = second
+
+class Matrix(object):
+    def __init__(self, matrix):
+        self.matrix = deepcopy(matrix)
+    def __str__(self):
+        return '\n'.join('\t'.join(map(str, row)) for row in self.matrix)
+
+    def __add__(self, other):
+        bl = len(self.matrix) == len(other.matrix)
+        if bl and len(self.matrix[0]) == len(other.matrix[0]):
+            l = []
+            for i in range(len(self.matrix)):
+                t = []
+                if len(self.matrix[i]) != len(other.matrix[i]):
+                    raise MatrixError(self, other)
+                for j in range(len(self.matrix[0])):
+                    t.append(self.matrix[i][j] + other.matrix[i][j])
+                l.append(t)
+            return Matrix(l)
+        else:
+            raise MatrixError(self, other)
+
+    def __mul__(self, a):
+        if isinstance(a,int) or isinstance(a,float):
+            res = deepcopy(self)
+            for i in range(self.size()[0]):
+                for j in range(self.size()[1]):
+                    res.matrix[i][j] *= a
+        else:
+            if(self.size()[1] == a.size()[0]):
+                res = Matrix([[0 for i in range(a.size()[1])] for j in range(self.size()[0])])
+                for i in range(len(self.matrix)):
+                    for j in range(len(a.matrix[0])):
+                        for k in range(len(a.matrix)):
+                            res.matrix[i][j] += self.matrix[i][k] * a.matrix[k][j]
+            else:
+                raise MatrixError(self,a)
+        return res
+
+    def __rmul__(self, a):
+        return self.__mul__(a)
+
+    def size(self):
+        return (len(self.matrix), len(self.matrix[0]))
+
+    def transpose(self):
+        transMatrix = list(zip(*self.matrix))
+        self.matrix = transMatrix
+        return Matrix(transMatrix)
+
+    def transposed(self):
+        transMatrix = list(zip(*self.matrix))
+        return Matrix(transMatrix)
+
+class SquareMatrix(Matrix):
+
+    def __pow__(self, x):
+        res = deepcopy(self)
+        for i in range(0,x-1):
+            res = res.__mul__(self)
+        return res
+
+exec(stdin.read())

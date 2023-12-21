@@ -1,0 +1,18 @@
+lines = []
+l = input()
+try:
+    while l:
+        lines.append(l)
+        l = input()
+except EOFError as e:
+    pass
+
+lines = filter(None, (line.rstrip() for line in lines))
+d = {'9': 0, '10': 0, '11': 0}
+quan = {'9': 0, '10': 0, '11': 0}
+for line in lines:
+    a, b, c, k = map(str, line.split())
+    d[c] += int(k)
+    quan[c] += 1
+for i in d:
+    print(float("%0.10f" %(d[i] / quan[i])), end = " ")

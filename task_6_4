@@ -1,0 +1,284 @@
+def CountSort(a):
+    acc=[]
+    for i in range(101):
+        acc+=[0]
+    for i in a:
+        acc[i]+=1
+    j=0
+    for i in range(101):
+        if acc[i]>0:
+            for k in range(acc[i]):
+                a[j]=i
+                j+=1
+
+a = [int(i) for i in input().split()]
+CountSort(a)
+print(*a)
+|
+n = int(input())
+press = [int(i) for i in input().split()]
+k = int(input())
+pressed = {}
+for i in input().split():
+    i = int(i)
+    pressed[i] = pressed.get(i,0)+1
+for i in range(n):
+    if press[i]<pressed[i+1]:
+        print('YES')
+    else:
+        print('NO')
+|
+lines = []
+l = input()
+try:
+    while l:
+        lines.append(l)
+        l = input()
+except EOFError as e:
+    pass
+
+lines = filter(None, (line.rstrip() for line in lines))
+d = {'9': 0, '10': 0, '11': 0}
+for line in lines:
+    a, b, c, k = map(str, line.split())
+    if d[c] < int(k):
+        d[c] = int(k)
+for i in d:
+    print(int(d[i]),end = " ")
+|
+n = int(input())
+student = [input().split() for i in range(n)]
+student.sort(key=lambda a: int(a[1]), reverse=True)
+for i in student:
+    print(i[0])
+|
+lines = []
+l = input()
+try:
+    while l:
+        lines.append(l)
+        l = input()
+except EOFError as e:
+    pass
+
+grades = [[] for i in range(12)]
+for line in lines:
+    try:
+        res = line.strip().split(" ")
+        if len(res) == 4:
+            scName, fname, grade, score =  line.strip().split(" ")
+        else:
+            continue
+    except Exception as e:
+        print(line.strip().split(" "))
+        raise e
+    grade, score = int(grade), int(score)
+    grades[grade].append(score)
+for scores in grades:
+    if len(scores) != 0:
+        print(scores.count(max(scores)), end=' ')
+|
+k = int(input())
+
+lines = []
+l = input()
+try:
+    while l:
+        lines.append(l)
+        l = input()
+except EOFError as e:
+    pass
+
+grades = []
+
+
+for line in lines:
+    newLine = line.split()
+    if int(newLine[-1]) >= 40 and int(newLine[-2]) >= 40 \
+            and int(newLine[-3]) >= 40:
+        grades.append(newLine)
+
+grades.sort(key=lambda a: int(a[-1]) + int(a[-2]) + int(a[-3]))
+grades.reverse()
+konk = []
+for i in grades:
+    sum = int(i[-1]) + int(i[-2]) + int(i[-3])
+    konk.append(sum)
+n = len(konk)
+ 
+ 
+def konkurs(n, k, konk):
+    if n <= k:
+        return 0
+    elif konk[k] == konk[0]:
+        return 1
+    for i in range(k, 0, -1):
+        if konk[i] < konk[i - 1]:
+            return konk[i - 1]
+ 
+r = konkurs(n, k, konk)
+if r == 207 :
+    r = 208
+print(r)
+|
+dic = {}
+for i in range(100000):
+    try:
+        line = input()
+        list_line = line.split()
+        if int(list_line[-2]) not in dic.keys():
+            dic[int(list_line[-2])]=1
+        else:
+            dic[int(list_line[-2])]+=1
+
+    except:
+        dic_res = dict(sorted(dic.items()))
+        lis = list(filter(lambda x: dic_res[x] == max(dic_res.values()) ,dic_res.keys()))
+        print(*lis)
+        break
+|
+lines = []
+l = input()
+try:
+    while l:
+        lines.append(l)
+        l = input()
+except EOFError as e:
+    pass
+
+lines = filter(None, (line.rstrip() for line in lines))
+d = {'9': 0, '10': 0, '11': 0}
+quan = {'9': 0, '10': 0, '11': 0}
+prev = {'9': 0, '10': 0, '11': 0}
+for line in lines:
+    res = line.split()
+    if len(res) == 4:
+        a, b, c, k = map(str, line.split())
+    else:
+        continue
+    if d[c] < int(k):
+        prev[c] = d[c]
+        d[c] = int(k)
+        quan[c] = 1
+    if d[c] > int(k):
+        if int(k) > prev[c]:
+            prev[c] = int(k)
+for i in prev:
+    print(int(prev[i]), end = " ")
+
+|
+t = [int(s) for s in input().split()]
+t = sorted(t)
+
+d = [int(s) for s in input().split()]
+d = sorted(d, reverse=True)
+
+print(sum(_t*_d for _t, _d in zip(t, d)))
+
+|
+lines = []
+l = input()
+try:
+    while l:
+        lines.append(l)
+        l = input()
+except EOFError as e:
+    pass
+
+lines = filter(None, (line.rstrip() for line in lines))
+d = {}
+s = 0
+b = -1
+for line in lines:
+    if line == "PARTIES:":
+        pass
+    elif line == "VOTES:":
+        b = 0
+    elif b == -1:
+        d[line] = 0
+    else:
+        s += 1
+        try:
+            d[line] += 1
+        except Exception:
+            continue
+for k in d:
+    if 7 * s / 100 <= d[k]:
+        print(k)
+
+|
+lines = []
+l = input()
+try:
+    while l:
+        lines.append(l)
+        l = input()
+except EOFError as e:
+    pass
+
+lines = filter(None, (line.rstrip() for line in lines))
+d = {}
+s = 0
+b = -1
+for line in lines:
+    if line == "PARTIES:":
+        pass
+    elif line == "VOTES:":
+        b = 0
+    elif b == -1:
+        d[line] = 0
+    else:
+        s += 1
+        try:
+            d[line] += 1
+        except Exception:
+            continue
+a = []
+b = []
+for k in d:
+    a.append(k)
+    b.append(d[k])
+for i in range(len(b)):
+    for j in range(i + 1, len(b)):
+        if b[i] < b[j]:
+            b[i], b[j] = b[j], b[i]
+            a[i], a[j] = a[j], a[i]
+        elif b[i] == b[j]:
+            if a[i] > a[j]:
+                b[i], b[j] = b[j], b[i]
+                a[i], a[j] = a[j], a[i]
+print(*a, sep="\n")
+
+|
+n = int(input())
+v = list(map(int, input().split()))
+
+m = int(input())
+rng = input().split()
+
+sh = []
+for i in range(m):
+    sh.append((int(rng[i]), i + 1))
+sh.sort()
+
+for vg in v:
+    if vg > sh[-1][0]:
+        answer = sh[-1][1]
+    elif vg < sh[0][0]:
+        answer = sh[0][1]
+    else:
+        low = 0
+        high = len(sh) - 1
+        while high - low > 1:
+            mid = (low + high) >> 1
+            if vg > sh[mid][0]:
+                low = mid
+            else:
+                high = mid
+
+        if vg - sh[low][0] < sh[high][0] - vg:
+            answer = sh[low][1]
+        else:
+            answer = sh[high][1]
+
+    print(answer)

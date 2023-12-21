@@ -1,0 +1,36 @@
+n = int(input())
+a = input().split(maxsplit = n)
+b = map(int, a)
+print(*sorted(b))
+|
+n = int(input())
+a = list(map(int, input().split()))
+b = 0
+s = 0
+a.sort()
+for i in range(len(a)):
+    if a[i] < n:
+        continue
+    elif a[i] == s:
+        continue
+    elif a[i] == n:
+        b += 1
+        s = a[i]
+    elif a[i] - s >= 3:
+        b += 1
+        s = a[i]
+print(b)
+|
+s, n = map(int, input().split())
+a = []
+for i in range(n):
+    v = int(input())
+    a.append(v)
+a = sorted(a)
+c = 0
+sum = a[0]
+while sum < s and c < len(a):
+    c += 1
+    if c < len(a):
+        sum += a[c]
+print(c)

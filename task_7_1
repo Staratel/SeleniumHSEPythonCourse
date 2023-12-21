@@ -1,0 +1,95 @@
+a = [int(x) for x in input().split()]
+a = set(a)
+print(len(a))
+|
+a = [int(x) for x in input().split()]
+b = [int(x) for x in input().split()]
+
+print(len(set(a) & set(b)))
+|
+a = [int(x) for x in input().split()]
+b = [int(x) for x in input().split()]
+
+print(*sorted(set(a) & set(b), key=int))
+|
+a = input().split()
+b = []
+for i in a:
+    if i not in b:
+        b.append(i)
+        print("NO")
+    else:
+        print("YES")
+
+|
+def _print(a):
+    print(len(a))
+    print(*[str(x) for x in sorted(a)])
+
+n, m = [int(s) for s in input().split()]
+_a, _b = set(), set()
+for i in range(n):
+    _a.add(int(input()))
+for i in range(m):
+    _b.add(int(input()))
+
+_print(_a & _b)
+_print(_a - _b)
+_print(_b - _a)
+|
+import sys
+set_data = set()
+lines = [line for line in sys.stdin.read().split()]
+for word in lines:
+    set_data.add(word)
+print(len(set_data))
+|
+n = int(input())
+a = set(range(1, n + 1))
+while True:
+    c = input()
+    if c == 'HELP':
+        break
+    c = {int(x) for x in c.split()}
+    answer = input()
+    if answer == 'YES':
+        a &= c
+    else:
+        a -= c
+print(*sorted(a))
+|
+print()
+|
+print()
+|
+a, b, c, d = map(int, input().split())
+a, b = min(a, b), max(a, b)
+c, d = min(c, d), max(c, d)
+s1 = set()
+s2 = set()
+for i in range(a, b + 1):
+    s1.add(i)
+for i in range(c, d + 1):
+    s2.add(i)
+print(len(s1 & s2))
+
+|
+N, K = [int(x) for x in input().split()]
+a = set([day for day in range(1, N + 1) if day % 7 not in (6, 0)])
+b = set(a)
+for party in range(K):
+    d, e = [int(x) for x in input().split()]
+    c = (N - d) // e + 1
+    b -= {d + e*i for i in range(c)}
+print(len(a) - len(b))
+|
+def change_format(string):
+    string = string.replace('-', '').replace('(', '').replace(')', '')
+    return string[-10:] if len(string)>7 else '495' + string[-7:]
+
+n = 4
+notes = []
+for i in range(n):
+    notes.append(input())
+for note in notes[1:]:
+    print('YES' if change_format(notes[0]) == change_format(note) else 'NO')

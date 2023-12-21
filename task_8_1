@@ -1,0 +1,34 @@
+print(len(set(input().split())))
+|
+import sys
+data = set()
+
+lines = [line for line in sys.stdin.read().split()]
+for word in lines:
+    data.add(word)
+print(len(data))
+|
+l = list(filter(lambda x : x % 2, list(map(int, input().split()))))
+print(min(l) if l else 0)
+|
+from itertools import repeat
+try:
+    print(0 in list(map(lambda r: int(r()), repeat(input, int(input())))))
+except Exception:
+    print("False")
+|
+from functools import reduce
+
+print(
+    reduce(
+        lambda x, y: x * y**5, map(
+            int, input().split()), 1))
+|
+def xor(a,b):
+  if a != b:
+    return 1
+  else:
+    return 0
+a = input()
+b = input()
+print(*list(map(xor,a.split(),b.split())))
